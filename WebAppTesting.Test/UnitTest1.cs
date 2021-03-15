@@ -27,17 +27,17 @@ namespace WebAppTesting.Test
             ngDriver.Url = webApplicationFactory.RootUri;
             ngDriver.WaitForAngular();
             
-            var counterLink  = ngDriver.FindElement(By.XPath("/html/body/app-root/body/app-nav-menu/header/nav/div/div/ul/li[2]/a"));
+            var counterLink  = ngDriver.FindElement(By.XPath("//app-nav-menu/header/nav/div/div/ul/li[2]/a"));
             counterLink.Click();
             ngDriver.WaitForAngular();
 
             var incrementButton =
-                ngDriver.FindElement(By.XPath("/html/body/app-root/body/div/app-counter-component/button"));
+                ngDriver.FindElement(By.XPath("//app-counter-component/button"));
             incrementButton.Click();
             ngDriver.WaitForAngular();
 
             var currentCount =
-                ngDriver.FindElement(By.XPath("/html/body/app-root/body/div/app-counter-component/p[2]/strong"));
+                ngDriver.FindElement(By.XPath("//app-counter-component/p[2]/strong"));
 
             Assert.Equal("1", currentCount.Text);
         }
