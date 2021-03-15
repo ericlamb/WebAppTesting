@@ -35,7 +35,7 @@ namespace WebAppTesting.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsEnvironment("IntegrationTest"))
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -71,6 +71,12 @@ namespace WebAppTesting.Web
 
                 if (env.IsDevelopment())
                 {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
+                
+                if (env.IsEnvironment("IntegrationTest"))
+                {
+                    spa.Options.SourcePath = "../../../../WebAppTesting.Web/ClientApp";
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
