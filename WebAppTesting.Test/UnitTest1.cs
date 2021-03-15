@@ -37,7 +37,7 @@ namespace WebAppTesting.Test
             ngDriver.WaitForAngular();
 
             var currentCount =
-                ngDriver.FindElement(By.XPath("//app-counter-component/p[2]/strong"));
+                ngDriver.FindElement(By.XPath("//app-counter-component")).FindElement(By.ClassName("currentCount"));
 
             Assert.Equal("1", currentCount.Text);
         }
