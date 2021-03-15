@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Protractor;
 using WebAppTesting.Test.Infrastructure;
+using WebAppTesting.Test.Pages;
 using WebAppTesting.Web;
 using Xunit;
 
@@ -26,10 +27,9 @@ namespace WebAppTesting.Test
 
             ngDriver.Url = webApplicationFactory.RootUri;
             ngDriver.WaitForAngular();
-            
-            var counterLink  = ngDriver.FindElement(By.XPath("//app-nav-menu")).FindElement(By.LinkText("Counter"));
-            counterLink.Click();
-            ngDriver.WaitForAngular();
+
+            var homePage = new HomePage(ngDriver);
+            var countPage = homePage.OpenCountPage();
 
             var incrementButton =
                 ngDriver.FindElement(By.XPath("//app-counter-component/button"));
