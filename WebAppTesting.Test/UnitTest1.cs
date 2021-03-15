@@ -27,7 +27,7 @@ namespace WebAppTesting.Test
             ngDriver.Url = webApplicationFactory.RootUri;
             ngDriver.WaitForAngular();
             
-            var counterLink  = ngDriver.FindElement(By.XPath("//app-nav-menu/header/nav/div/div/ul/li[2]/a"));
+            var counterLink  = ngDriver.FindElement(By.XPath("//app-nav-menu")).FindElement(By.LinkText("Counter"));
             counterLink.Click();
             ngDriver.WaitForAngular();
 
