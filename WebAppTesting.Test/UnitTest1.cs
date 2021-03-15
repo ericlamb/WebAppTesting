@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Protractor;
 using WebAppTesting.Test.Infrastructure;
@@ -31,15 +30,9 @@ namespace WebAppTesting.Test
             var homePage = new HomePage(ngDriver);
             var countPage = homePage.OpenCountPage();
 
-            var incrementButton =
-                ngDriver.FindElement(By.XPath("//app-counter-component/button"));
-            incrementButton.Click();
-            ngDriver.WaitForAngular();
-
-            var currentCount =
-                ngDriver.FindElement(By.XPath("//app-counter-component")).FindElement(By.ClassName("currentCount"));
-
-            Assert.Equal("1", currentCount.Text);
+            countPage.Increment();
+            
+            Assert.Equal(1, countPage.CurrentCount);
         }
     }
 }
