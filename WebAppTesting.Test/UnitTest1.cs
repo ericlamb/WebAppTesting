@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Protractor;
 using WebAppTesting.Test.Infrastructure;
@@ -11,7 +12,7 @@ namespace WebAppTesting.Test
     public class UnitTest1
     {
         [Fact]
-        public void Test1()
+        public void WhenCounterIsIncremented()
         {
             using var webApplicationFactory = new SeleniumServerFactory<Startup>();
             using var client = webApplicationFactory.CreateClient();
@@ -24,6 +25,21 @@ namespace WebAppTesting.Test
             using var ngDriver = new NgWebDriver(driver);
 
             ngDriver.Url = webApplicationFactory.RootUri;
+            ngDriver.WaitForAngular();
+            
+            var counterLink  = ngDriver.FindElement(By.XPath("/html/body/app-root/body/app-nav-menu/header/nav/div/div/ul/li[2]/a"));
+            counterLink.Click();
+            ngDriver.WaitForAngular();
+
+            var incrementButton =
+                ngDriver.FindElement(By.XPath("/html/body/app-root/body/div/app-counter-component/button"));
+            incrementButton.Click();
+            ngDriver.WaitForAngular();
+
+            var currentCount =
+                ngDriver.FindElement(By.XPath("/html/body/app-root/body/div/app-counter-component/p[2]/strong"));
+
+            Assert.Equal("1", currentCount.Text);
         }
     }
 }
