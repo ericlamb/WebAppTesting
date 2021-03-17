@@ -29,6 +29,12 @@ namespace WebAppTesting.Test
             using (var context = Context){
                 Assert.Equal(3, context.Forecasts.Count());
             }
+
+            fetchDataPage.Forcasts.First().Delete();
+            Assert.Equal(2, fetchDataPage.Forcasts.Count());
+            using (var context = Context){
+                Assert.Equal(2, context.Forecasts.Count());
+            }
         }
 
         private void InitializeData()

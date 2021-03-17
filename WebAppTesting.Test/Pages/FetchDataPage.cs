@@ -29,6 +29,13 @@ namespace WebAppTesting.Test.Pages
             public int TempF => int.Parse(WebElement.FindElement(By.XPath(".//td[3]")).Text);
 
             public string Summary => WebElement.FindElement(By.XPath(".//td[4]")).Text;
+
+            internal void Delete()
+            {
+                var deleteButton = WebElement.FindElement(By.XPath(".//button"));
+                deleteButton.Click();
+                WebElement.NgDriver.WaitForAngular();
+            }
         }
 
         internal class NewForecastForm : PageElement
