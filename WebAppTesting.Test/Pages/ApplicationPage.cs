@@ -20,7 +20,7 @@ namespace WebAppTesting.Test.Pages
 
         public FetchDataPage OpenFetchData()
         {
-            var counterLink = Driver.FindElement(By.XPath("//app-nav-menu")).FindElement(By.LinkText("Fetch Data"));
+            var counterLink = Driver.FindElement(By.XPath("//app-nav-menu")).FindElement(By.LinkText("Fetch data"));
             counterLink.Click();
             Driver.WaitForAngular();
             return new FetchDataPage(Driver);
