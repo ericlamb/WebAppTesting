@@ -2,6 +2,25 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
+<form [formGroup]='newForecastForm' class="form-inline">
+  <div class="form-group mb-2">
+    <label for="date" class="sr-only">Date</label>
+    <input class="form-control" type="date" formControlName='date' />
+  </div>
+
+  <div class="form-group ml-sm-3 mb-2">
+    <label for="temperatureC" class="sr-only">Temp. (C)</label>
+    <input class="form-control" type="number" formControlName='temperatureC' placeholder="Temp. (C)"/>
+  </div>
+
+  <div class="form-group ml-sm-3 mb-2">
+    <label for="summary" class="sr-only">Summary</label>
+    <input class="form-control" type="text" formControlName='summary' placeholder="Summary"/>
+  </div>
+
+  <button type="submit" class="btn btn-primary ml-sm-3 mb-2" (click)="create()">Create</button>
+</form>
+
 <p *ngIf="!forecasts"><em>Loading...</em></p>
 
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">

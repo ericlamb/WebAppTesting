@@ -18,6 +18,23 @@ namespace WebAppTesting.Web.Controllers
             _context.Forecasts.Select(f =>
                 new WeatherForecast { Id = f.Id, Date = f.Date, TemperatureC = f.TemperatureC, Summary = f.Summary });
 
+
+        [HttpPost]
+        public OkResult Create(WeatherForecast forecast)
+        {
+            var forecastEntity = new WeatherForecastEntity
+            {
+                Date = forecast.Date,
+                Summary = forecast.Summary,
+                TemperatureC = forecast.TemperatureC
+            };
+
+            _context.Forecasts.Add(forecastEntity);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
         [HttpDelete("{id}")]
         public OkResult Delete(int id)
         {
