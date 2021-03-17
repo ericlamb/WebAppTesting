@@ -11,14 +11,16 @@
       <th>Temp. (C)</th>
       <th>Temp. (F)</th>
       <th>Summary</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let forecast of forecasts">
+    <tr *ngFor="let forecast of forecasts | async">
       <td>{{ forecast.date }}</td>
       <td>{{ forecast.temperatureC }}</td>
       <td>{{ forecast.temperatureF }}</td>
       <td>{{ forecast.summary }}</td>
+      <td><button class="btn btn-danger btn-sm" (click)="delete(forecast.id)">Delete</button></td>
     </tr>
   </tbody>
 </table>

@@ -16,6 +16,19 @@ namespace WebAppTesting.Web.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get() =>
             _context.Forecasts.Select(f =>
-                new WeatherForecast { Date = f.Date, TemperatureC = f.TemperatureC, Summary = f.Summary });
+                new WeatherForecast { Id = f.Id, Date = f.Date, TemperatureC = f.TemperatureC, Summary = f.Summary });
+
+        [HttpDelete("{id}")]
+        public OkResult Delete(int id)
+        {
+            var forecast = _context.Forecasts.FirstOrDefault(x => x.Id == id);
+            if (forecast != null)
+            {
+                _context.Forecasts.Remove(forecast);
+                _context.SaveChanges();
+            }
+
+            return Ok();
+        }
     }
 }
