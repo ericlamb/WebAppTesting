@@ -17,5 +17,13 @@ namespace WebAppTesting.Test.Pages
             Driver.WaitForAngular();
             return new CountPage(Driver);
         }
+
+        public FetchDataPage OpenFetchData()
+        {
+            var counterLink = Driver.FindElement(By.XPath("//app-nav-menu")).FindElement(By.LinkText("Fetch Data"));
+            counterLink.Click();
+            Driver.WaitForAngular();
+            return new FetchDataPage(Driver);
+        }
     }
 }
