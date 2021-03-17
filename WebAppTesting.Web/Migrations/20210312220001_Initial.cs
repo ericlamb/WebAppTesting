@@ -22,31 +22,6 @@ namespace WebAppTesting.Web.Migrations
                     table.PrimaryKey("PK_Forecasts", x => x.Id);
                     table.UniqueConstraint("AK_Forecasts_Date", x => x.Date);
                 });
-
-            migrationBuilder.InsertData(
-                table: "Forecasts",
-                columns: new[] { "Id", "Date", "Summary", "TemperatureC" },
-                values: new object[] { 1, new DateTime(2021, 3, 13, 5, 0, 0, 0, DateTimeKind.Local), "Hot", 47 });
-
-            migrationBuilder.InsertData(
-                table: "Forecasts",
-                columns: new[] { "Id", "Date", "Summary", "TemperatureC" },
-                values: new object[] { 2, new DateTime(2021, 3, 14, 4, 0, 0, 0, DateTimeKind.Local), "Balmy", -15 });
-
-            migrationBuilder.InsertData(
-                table: "Forecasts",
-                columns: new[] { "Id", "Date", "Summary", "TemperatureC" },
-                values: new object[] { 3, new DateTime(2021, 3, 15, 4, 0, 0, 0, DateTimeKind.Local), "Cool", 39 });
-
-            migrationBuilder.InsertData(
-                table: "Forecasts",
-                columns: new[] { "Id", "Date", "Summary", "TemperatureC" },
-                values: new object[] { 4, new DateTime(2021, 3, 16, 5, 0, 0, 0, DateTimeKind.Local), "Hot", 18 });
-
-            migrationBuilder.InsertData(
-                table: "Forecasts",
-                columns: new[] { "Id", "Date", "Summary", "TemperatureC" },
-                values: new object[] { 5, new DateTime(2021, 3, 17, 5, 0, 0, 0, DateTimeKind.Local), "Mild", 50 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

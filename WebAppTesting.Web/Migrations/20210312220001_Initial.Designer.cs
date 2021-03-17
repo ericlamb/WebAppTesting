@@ -9,7 +9,7 @@ using WebAppTesting.Web.Models;
 namespace WebAppTesting.Web.Migrations
 {
     [DbContext(typeof(WeatherContext))]
-    [Migration("20210312220001_Initial")]
+    [Migration("20210317182654_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,43 +39,6 @@ namespace WebAppTesting.Web.Migrations
                     b.HasAlternateKey("Date");
 
                     b.ToTable("Forecasts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Date = new DateTime(2021, 3, 13, 5, 0, 0, 0, DateTimeKind.Local),
-                            Summary = "Hot",
-                            TemperatureC = 47
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Date = new DateTime(2021, 3, 14, 4, 0, 0, 0, DateTimeKind.Local),
-                            Summary = "Balmy",
-                            TemperatureC = -15
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Date = new DateTime(2021, 3, 15, 4, 0, 0, 0, DateTimeKind.Local),
-                            Summary = "Cool",
-                            TemperatureC = 39
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Date = new DateTime(2021, 3, 16, 5, 0, 0, 0, DateTimeKind.Local),
-                            Summary = "Hot",
-                            TemperatureC = 18
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Date = new DateTime(2021, 3, 17, 5, 0, 0, 0, DateTimeKind.Local),
-                            Summary = "Mild",
-                            TemperatureC = 50
-                        });
                 });
 #pragma warning restore 612, 618
         }
