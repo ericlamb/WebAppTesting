@@ -25,6 +25,7 @@ namespace WebAppTesting.Test
             Client = ServerFactory.CreateClient();
 
             var options = new ChromeOptions();
+            options.AddArgument("--headless");
             options.AddArgument("--ignore-certificate-errors");
 
             Driver = new ChromeDriver(Path.GetFullPath("."), options);
