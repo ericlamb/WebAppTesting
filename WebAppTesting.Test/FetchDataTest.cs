@@ -15,26 +15,9 @@ namespace WebAppTesting.Test
             var homePage = new HomePage(NgDriver);
             var fetchDataPage = homePage.OpenFetchData();
 
-            Assert.Equal(2, fetchDataPage.Forcasts.Count());
-            Assert.All(fetchDataPage.Forcasts, x => Assert.True(x.TempC > 0));
-            Assert.All(fetchDataPage.Forcasts, x => Assert.True(!string.IsNullOrWhiteSpace(x.Summary)));
-
-            fetchDataPage.NewForcast.Date = DateTime.Now;
-            fetchDataPage.NewForcast.TempC = 20;
-            fetchDataPage.NewForcast.Summary = "Balmy";
-            fetchDataPage.NewForcast.Submit();
-
-            Assert.Equal(3, fetchDataPage.Forcasts.Count());
-            Assert.True(fetchDataPage.Forcasts.Any(x => x.Summary == "Balmy"));
-            using (var context = Context){
-                Assert.Equal(3, context.Forecasts.Count());
-            }
-
-            fetchDataPage.Forcasts.First().Delete();
-            Assert.Equal(2, fetchDataPage.Forcasts.Count());
-            using (var context = Context){
-                Assert.Equal(2, context.Forecasts.Count());
-            }
+            TestLoadedData(fetchDataPage);
+            TestAdd(fetchDataPage);
+            TestDelete(fetchDataPage);
         }
 
         private void InitializeData()
@@ -57,6 +40,38 @@ namespace WebAppTesting.Test
             );
 
             context.SaveChanges();
+        }
+
+        private static void TestLoadedData(FetchDataPage fetchDataPage)
+        {
+            Assert.Equal(2, fetchDataPage.Forcasts.Count());
+            Assert.All(fetchDataPage.Forcasts, x => Assert.True(x.TempC > 0));
+            Assert.All(fetchDataPage.Forcasts, x => Assert.True(!string.IsNullOrWhiteSpace(x.Summary)));
+        }
+
+        private void TestAdd(FetchDataPage fetchDataPage)
+        {
+            fetchDataPage.NewForcast.Date = DateTime.Now;
+            fetchDataPage.NewForcast.TempC = 20;
+            fetchDataPage.NewForcast.Summary = "Balmy";
+            fetchDataPage.NewForcast.Submit();
+
+            Assert.Equal(3, fetchDataPage.Forcasts.Count());
+            Assert.True(fetchDataPage.Forcasts.Any(x => x.Summary == "Balmy"));
+            using (var context = Context)
+            {
+                Assert.Equal(3, context.Forecasts.Count());
+            }
+        }
+
+        private void TestDelete(FetchDataPage fetchDataPage)
+        {
+            fetchDataPage.Forcasts.First().Delete();
+            Assert.Equal(2, fetchDataPage.Forcasts.Count());
+            using (var context = Context)
+            {
+                Assert.Equal(2, context.Forecasts.Count());
+            }
         }
     }
 }
