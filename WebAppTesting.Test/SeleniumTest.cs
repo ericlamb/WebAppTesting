@@ -9,9 +9,11 @@ using Protractor;
 using WebAppTesting.Test.Infrastructure;
 using WebAppTesting.Web;
 using WebAppTesting.Web.Models;
+using Xunit;
 
 namespace WebAppTesting.Test
 {
+    [Collection("E2E Test Collection")]
     public abstract class SeleniumTest : IDisposable
     {
         public SeleniumTest()
